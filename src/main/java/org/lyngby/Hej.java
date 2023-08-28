@@ -11,21 +11,19 @@ public class Hej {
     public static void main(String[] args) {
         EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig();
         Phone p1 = new Phone("111-222-22");
-        Phone p2 = new Phone("100-222-22");
+        //Phone p2 = new Phone("100-222-22");
 
         Person steve = new Person("Steve");
         Person benji = new Person("benji");
 
-        steve.setPhone(p1);
-        benji.setPhone(p2);
 
+        steve.setPhone(p1);
+        benji.setPhone(p1);
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-
             em.persist(steve);
             em.persist(benji);
             em.persist(p1);
-            em.persist(p2);
             em.getTransaction().commit();
         }
     }

@@ -20,9 +20,6 @@ public class Phone {
     @Column(name = "number")
     private String number;
 
-    @OneToOne(mappedBy = "phone")
-    private Person person;
-
 
     public Phone(String number) {
         this.number = number;
