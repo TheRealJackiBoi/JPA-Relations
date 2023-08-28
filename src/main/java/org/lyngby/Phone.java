@@ -20,7 +20,8 @@ public class Phone {
     @Column(name = "number")
     private String number;
 
-
+    @ManyToOne
+    private Person person;
 
 
 
@@ -28,5 +29,7 @@ public class Phone {
         this.number = number;
     }
 
-
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 }

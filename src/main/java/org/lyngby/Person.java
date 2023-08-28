@@ -39,6 +39,7 @@ public class Person {
     public void setPhones(Phone phone) {
         if (phones != null) {
             this.phones.add(phone);
+            phone.setPerson(this);
         }
     }
 }
