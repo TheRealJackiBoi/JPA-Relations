@@ -1,9 +1,13 @@
+package org.lyngby;
+
 import jakarta.persistence.EntityManagerFactory;
 import lombok.NoArgsConstructor;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import org.lyngby.Person;
+import org.lyngby.Phone;
 
 import java.util.Properties;
 
@@ -18,7 +22,7 @@ public class HibernateConfig {
 
             Properties props = new Properties();
 
-            props.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/phones_db?currentSchema=public");
+            props.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/jpa_relations?currentSchema=public");
             props.put("hibernate.connection.username", "postgres");
             props.put("hibernate.connection.password", "postgres");
             props.put("hibernate.show_sql", "true"); // show sql in console
@@ -53,6 +57,8 @@ public class HibernateConfig {
 
     private static void getAnnotationConfiguration(Configuration configuration) {
         // add annotated classes
+        configuration.addAnnotatedClass(Person.class);
+        configuration.addAnnotatedClass(Phone.class);
     }
 
     public static EntityManagerFactory getEntityManagerFactoryConfig() {
