@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.lyngby.Phone;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Getter
 @ToString
@@ -16,21 +19,26 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "name")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "name", length = 25)
     private String name;
 
-    @OneToOne
-    @MapsId
-    private Phone phone;
+
+    @OneToMany
+    @JoinColumn(name = "person_id")
+    private Set<Phone> phones = new HashSet<>();
+
 
     public Person(String name) {
         this.name = name;
     }
 
-    public void setPhone(Phone phone) {
-        this.phone = phone;
+
+    public void setPhones(Phone phone) {
+        if (phones != null) {
+            this.phones.add(phone);
+        }
     }
 }

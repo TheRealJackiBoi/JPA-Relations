@@ -14,16 +14,14 @@ public class Hej {
         Phone p2 = new Phone("100-222-22");
 
         Person steve = new Person("Steve");
-        Person benji = new Person("benji");
+        //Person benji = new Person("benji");
 
-        steve.setPhone(p1);
-        benji.setPhone(p2);
+        steve.setPhones(p1);
+        steve.setPhones(p2);
 
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-
             em.persist(steve);
-            em.persist(benji);
             em.persist(p1);
             em.persist(p2);
             em.getTransaction().commit();
